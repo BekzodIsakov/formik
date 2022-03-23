@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email format').required('Required'),
-  channel: Yup.string().required('required'),
+  channel: Yup.string().required('Required'),
 });
 
 export const YoutubeForm = () => {
@@ -42,8 +42,6 @@ export const YoutubeForm = () => {
     // },
   });
 
-  console.log('touched fields', formik.touched);
-
   return (
     <div>
       <form autoComplete='off' onSubmit={formik.handleSubmit}>
@@ -53,11 +51,9 @@ export const YoutubeForm = () => {
             type='text'
             id='name'
             name='name'
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('name')}
           />
-          {formik.errors.name && formik.touched.name && (
+          {formik.touched.name && formik.errors.name && (
             <div className='error'>{formik.errors.name}</div>
           )}
         </div>
@@ -68,11 +64,9 @@ export const YoutubeForm = () => {
             type='email'
             id='email'
             name='email'
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('email')}
           />
-          {formik.errors.email && formik.touched.email && (
+          {formik.touched.email && formik.errors.email && (
             <div className='error'>{formik.errors.email}</div>
           )}
         </div>
@@ -83,11 +77,9 @@ export const YoutubeForm = () => {
             type='text'
             id='name'
             name='channel'
-            value={formik.values.channel}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('channel')}
           />
-          {formik.errors.channel && formik.touched.channel && (
+          {formik.touched.channel && formik.errors.channel && (
             <div className='error'>{formik.errors.channel}</div>
           )}
         </div>
